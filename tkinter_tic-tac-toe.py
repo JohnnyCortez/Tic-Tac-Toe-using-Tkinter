@@ -181,8 +181,7 @@ def buttonclick(x):
         b+=1
 
     if runScript ==1: #run the script to call robot move if the player made their move
-        import subprocess
-
+        
         # Define the Python script to be run and the arguments to pass
         python_script_to_run = "test.py"
         arguments = [" ".join(currGame)]
