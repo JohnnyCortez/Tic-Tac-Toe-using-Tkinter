@@ -1,6 +1,7 @@
 import tkinter as tk
 import tkinter.messagebox
 from tkinter.tix import COLUMN
+import subprocess
 
 window=tk.Tk()
 window.title('Tic Tac Toe')
@@ -52,6 +53,8 @@ a=1
 b=0
 c=0
 
+currGame = ["-", "-", "-", "-", "-", "-", "-", "-", "-"]
+
 def disablebutton():
     button1['state']=tk.DISABLED
     button2['state']=tk.DISABLED
@@ -65,6 +68,8 @@ def disablebutton():
 
 def restartbutton():
     global a,b,c
+    global currGame 
+    currGame = ["-", "-", "-", "-", "-", "-", "-", "-", "-"]
     a=1
     b=0
     c=0
@@ -100,8 +105,10 @@ def restartbutton():
 
 def buttonclick(x):
     global a,b,c
+    runScript = a
     #for player 1
     if(x==1 and a==1 and button1['text']==''):
+        currGame[0] = "x"
         button1['text']="X"
         button1['bg']="skyblue"
         label2['bg']="#e8956f"
@@ -109,6 +116,7 @@ def buttonclick(x):
         a=0
         b+=1
     if(x==2 and a==1 and button2['text']==''):
+        currGame[1] = "x"
         button2['text']="X"
         button2['bg']="skyblue"
         label2['bg']="#e8956f"
@@ -116,6 +124,7 @@ def buttonclick(x):
         a=0
         b+=1
     if(x==3 and a==1 and button3['text']==''):
+        currGame[2] = "x"
         button3['text']="X"
         button3['bg']="skyblue"
         label2['bg']="#e8956f"
@@ -123,6 +132,7 @@ def buttonclick(x):
         a=0
         b+=1
     if(x==4 and a==1 and button4['text']==''):
+        currGame[3] = "x"
         button4['text']="X"
         button4['bg']="skyblue"
         label2['bg']="#e8956f"
@@ -130,6 +140,7 @@ def buttonclick(x):
         a=0
         b+=1
     if(x==5 and a==1 and button5['text']==''):
+        currGame[4] = "x"
         button5['text']="X"
         button5['bg']="skyblue"
         label2['bg']="#e8956f"
@@ -137,6 +148,7 @@ def buttonclick(x):
         a=0
         b+=1
     if(x==6 and a==1 and button6['text']==''):
+        currGame[5] = "x"
         button6['text']="X"
         button6['bg']="skyblue"
         label2['bg']="#e8956f"
@@ -144,6 +156,7 @@ def buttonclick(x):
         a=0
         b+=1
     if(x==7 and a==1 and button7['text']==''):
+        currGame[6] = "x"
         button7['text']="X"
         button7['bg']="skyblue"
         label2['bg']="#e8956f"
@@ -151,6 +164,7 @@ def buttonclick(x):
         a=0
         b+=1
     if(x==8 and a==1 and button8['text']==''):
+        currGame[7] = "x"
         button8['text']="X"
         button8['bg']="skyblue"
         label2['bg']="#e8956f"
@@ -158,6 +172,7 @@ def buttonclick(x):
         a=0
         b+=1
     if(x==9 and a==1 and button9['text']==''):
+        currGame[8] = "x"
         button9['text']="X"
         button9['bg']="skyblue"
         label2['bg']="#e8956f"
@@ -165,8 +180,32 @@ def buttonclick(x):
         a=0
         b+=1
 
+    if runScript ==1: #run the script to call robot move if the player made their move
+        import subprocess
+
+        # Define the Python script to be run and the arguments to pass
+        python_script_to_run = "test.py"
+        arguments = [" ".join(currGame)]
+
+        # Construct the command to run the script with arguments
+        command = ["python", python_script_to_run] + arguments
+
+        # Run the subprocess
+        result = subprocess.run(command, capture_output=True, text=True)
+
+        # Check the result
+        if result.returncode == 0:
+            print("Script ran successfully.")
+            print("Output:")
+            print(result.stdout)
+        else:
+            print("Script encountered an error.")
+            print("Error Output:")
+            print(result.stderr)
+
     #for player 2
     if(x==1 and a==0 and button1['text']==''):
+        currGame[0] = "o"
         button1['text']='O'
         button1['bg']="#e8956f"
         label2['bg']="skyblue"
@@ -174,6 +213,7 @@ def buttonclick(x):
         a=1
         b+=1
     if(x==2 and a==0 and button2['text']==''):
+        currGame[1] = "o"
         button2['text']='O'
         button2['bg']="#e8956f"
         label2['bg']="skyblue"
@@ -181,6 +221,7 @@ def buttonclick(x):
         a=1
         b+=1
     if(x==3 and a==0 and button3['text']==''):
+        currGame[2] = "o"
         button3['text']='O'
         button3['bg']="#e8956f"
         label2['bg']="skyblue"
@@ -188,6 +229,7 @@ def buttonclick(x):
         a=1
         b+=1
     if(x==4 and a==0 and button4['text']==''):
+        currGame[3] = "o"
         button4['text']='O'
         button4['bg']="#e8956f"
         label2['bg']="skyblue"
@@ -195,6 +237,7 @@ def buttonclick(x):
         a=1
         b+=1
     if(x==5 and a==0 and button5['text']==''):
+        currGame[4] = "o"
         button5['text']='O'
         button5['bg']="#e8956f"
         label2['bg']="skyblue"
@@ -202,6 +245,7 @@ def buttonclick(x):
         a=1
         b+=1
     if(x==6 and a==0 and button6['text']==''):
+        currGame[5] = "o"
         button6['text']='O'
         button6['bg']="#e8956f"
         label2['bg']="skyblue"
@@ -209,6 +253,7 @@ def buttonclick(x):
         a=1
         b+=1
     if(x==7 and a==0 and button7['text']==''):
+        currGame[6] = "o"
         button7['text']='O'
         button7['bg']="#e8956f"
         label2['bg']="skyblue"
@@ -216,6 +261,7 @@ def buttonclick(x):
         a=1
         b+=1
     if(x==8 and a==0 and button8['text']==''):
+        currGame[7] = "o"
         button8['text']='O'
         button8['bg']="#e8956f"
         label2['bg']="skyblue"
@@ -223,6 +269,7 @@ def buttonclick(x):
         a=1
         b+=1
     if(x==9 and a==0 and button9['text']==''):
+        currGame[8] = "o"
         button9['text']='O'
         button9['bg']="#e8956f"
         label2['bg']="skyblue"
